@@ -5,6 +5,7 @@ volumes:
   helpdesk_data:
   postgres_data:
 
+
 services:
   caddy:
     image: caddy:2
@@ -18,7 +19,11 @@ services:
       - "443:443"
 
   django-helpdesk:
-    image: djangohelpdesk/standalone
+    container_name: django-helpdesk-local
+    image: django-helpdesk-local
+    build:
+      context: ..
+      dockerfile: standalone/Dockerfile
     user: root
     volumes:
       - helpdesk_data:/data
